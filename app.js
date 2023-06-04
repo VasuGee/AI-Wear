@@ -87,8 +87,8 @@ app.get("/here", (req, res) => {
   const email = "abc@gmail.com";
   const password = "abcde";
   //catchAsync(users.register);
-  const user = new User({ email, username });
-  const registeredUser = User.register(user, password);
+  //const user = new User({ email, username });
+  //const registeredUser = User.register(user, password);
   res.send(registeredUser);
   //res.send(users);
 });
