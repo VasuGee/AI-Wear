@@ -8,12 +8,19 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
+const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
+const Cart = require("./models/cart");
+const Order = require("./models/order");
+const Tshirt = require("./models/tshirt");
 const users = require("./controllers/users");
+const carts = require("./controllers/carts");
+const tshirts = require("./controllers/tshirts");
+const orders = require("./controllers/orders");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 
@@ -82,16 +89,15 @@ app.get("/", (req, res) => {
   res.send("Hello World!!!");
 });
 
-app.get("/here", (req, res) => {
-  const username = "abcde";
-  const email = "abc@gmail.com";
-  const password = "abcde";
-  //catchAsync(users.register);
-  //const user = new User({ email, username });
-  //const registeredUser = User.register(user, password);
-  res.send(registeredUser);
-  //res.send(users);
-});
+app.post("/api/register", catchAsync(users.register));
+app.post(
+  "/api/login",
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/login",
+  }),
+  users.login
+);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page Not Found", 404));

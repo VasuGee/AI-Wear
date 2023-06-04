@@ -9,11 +9,11 @@ module.exports.register = async (req, res, next) => {
     req.login(registeredUser, (err) => {
       if (err) return next(err);
       console.log("Welcome to AI-Wear!");
-      res.redirect("/browse");
+      //res.redirect("/browse");
     });
   } catch (e) {
     console.log(e.message);
-    res.redirect("/register");
+    //res.redirect("/register");
   }
 };
 
