@@ -18,13 +18,10 @@ const cartSchema = new mongoose.Schema({
       quantity: {
         type: Number,
         required: true,
+        default: 0,
       },
     },
   ],
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
 const Cart = mongoose.model("Cart", cartSchema);
