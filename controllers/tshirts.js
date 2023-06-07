@@ -2,10 +2,10 @@ const User = require("../models/user");
 const Tshirt = require("../models/tshirt");
 const cloudinary = require("cloudinary").v2;
 
-cloudinary.config({
-  cloud_name: "dwjdp1gmz",
-  api_key: "535678378758232",
-  api_secret: "r6ND7KJyb79eF9goN98dH9kkcGU",
+cloudinary.config({ 
+  cloud_name: 'dubjd6j0u', 
+  api_key: '929297425867324', 
+  api_secret: 'QPPvTLpmGgNKIJTSB0ycF29rjgo' 
 });
 
 //find by created by
